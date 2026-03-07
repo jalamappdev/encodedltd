@@ -1,0 +1,1042 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Encoded Solutions Limited - Senior .NET Backend & Cloud Engineering">
+    <title>Encoded Solutions Limited | Backend Engineering & Cloud Architecture</title>
+    
+    <!-- Google Fonts: Inter (modern, clean, tech-friendly) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0066cc;
+            --primary-dark: #004999;
+            --accent: #00d4ff;
+            --dark-bg: #0a0e27;
+            --card-bg: #1a1f3a;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b8d4;
+            --border: #2a3050;
+            --font-heading: 'Inter', system-ui, sans-serif;
+            --font-body: 'Inter', system-ui, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #1a1f3a 100%);
+            color: var(--text-primary);
+            line-height: 1.82;
+            font-size: 1.1rem;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.25rem 2.5rem;
+            background: rgba(10, 14, 39, 0.96);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav ul {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-end;
+            gap: 2.25rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.98rem;
+            font-weight: 500;
+            transition: all 0.28s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.28s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .nav-logo {
+            position: absolute;
+            left: 2.5rem;
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .company-name .en   { color: #cbd5e1; }
+        .company-name .code { color: var(--accent); }
+        .company-name .d    { color: #cbd5e1; }
+        .company-name .solutions { color: var(--accent); }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5rem;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 102, 204, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -150px;
+            left: -100px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(20px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            max-width: 980px;
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.025em;
+            line-height: 1.05;
+        }
+
+        .hero .tagline {
+            font-size: 1.4rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            letter-spacing: 0.5px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.35rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.25rem;
+            font-weight: 400;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.25rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.25rem;
+            border-radius: 10px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: var(--dark-bg);
+            box-shadow: 0 6px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-4px);
+        }
+
+        /* Sections */
+        section {
+            padding: 7rem 2.5rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4.5rem;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* About */
+        #about {
+            background: rgba(26, 31, 58, 0.5);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .about-text p {
+            font-size: 1.12rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.6rem;
+            line-height: 1.8;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1.75rem;
+        }
+
+        .stat {
+            padding: 1.75rem;
+            background: var(--card-bg);
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .stat-number {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        /* Grid Layouts */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        /* Service Cards */
+        .service-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.32s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 12px 32px rgba(0, 212, 255, 0.18);
+        }
+
+        .service-card h3 {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            flex-grow: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card ul {
+            list-style: none;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card li {
+            padding: 0.6rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .service-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Expertise Cards */
+        .expertise-category {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.32s ease;
+        }
+
+        .expertise-category:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 12px 32px rgba(0, 212, 255, 0.18);
+        }
+
+        .expertise-category h3 {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.15rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .expertise-category ul {
+            list-style: none;
+        }
+
+        .expertise-category li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            padding-left: 1.25rem;
+            position: relative;
+        }
+
+        .expertise-category li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Project Cards */
+        .project-card {
+            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(42, 48, 80, 0.5) 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.32s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 12px 32px rgba(0, 212, 255, 0.18);
+        }
+
+        .project-card h3 {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .project-outcomes {
+            background: rgba(0, 212, 255, 0.05);
+            padding: 1rem;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent);
+            margin-top: 1rem;
+        }
+
+        .project-outcomes strong {
+            color: var(--accent);
+        }
+
+        .project-outcomes ul {
+            list-style: none;
+            margin-top: 0.75rem;
+        }
+
+        .project-outcomes li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .project-outcomes li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Why Section */
+        .why-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            display: flex;
+            gap: 1.5rem;
+            padding: 2rem;
+            transition: all 0.32s ease;
+        }
+
+        .why-item:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 12px 32px rgba(0, 212, 255, 0.18);
+        }
+
+        .why-icon {
+            font-size: 1.75rem;
+            color: var(--accent);
+            font-weight: 800;
+            min-width: 2.5rem;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .why-content h3 {
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .why-content p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%);
+            text-align: center;
+        }
+
+        .contact-content h2 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .contact-content > p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .contact-item {
+            padding: 1.5rem;
+        }
+
+        .contact-item h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.75rem;
+            color: var(--accent);
+        }
+
+        .contact-item p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .contact-item a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.28s ease;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.35);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.98rem;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3.2rem; }
+            .hero .tagline { font-size: 1.25rem; }
+            .about-content { grid-template-columns: 1fr; }
+            nav ul { justify-content: center; gap: 1.4rem; }
+            .nav-logo { position: static; text-align: center; margin-bottom: 1rem; }
+            section { padding: 5rem 1.5rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .expertise-grid { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .why-grid { grid-template-columns: 1fr; }
+            .cta-buttons { flex-direction: column; }
+            .btn { width: 100%; }
+            .contact-info { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.6rem; }
+            .section-header h2 { font-size: 2.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-logo">
+            <span class="company-name">
+                <span class="en">En</span><span class="code">code</span><span class="d">d</span> <span class="solutions">Solutions Limited</span>
+            </span>
+        </div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#expertise">Expertise</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>
+                <span class="company-name">
+                    <span class="en">En</span><span class="code">code</span><span class="d">d</span> 
+                    <span class="solutions">Solutions Limited</span>
+                </span>
+            </h1>
+            <div class="tagline">High-Performance .NET Backend Engineering</div>
+            <div class="subtitle">Cloud Architecture • Real-Time Systems • Distributed Platforms</div>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                <a href="#services" class="btn btn-secondary">Explore Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-header">
+            <h2>About Us</h2>
+            <p>Experienced software engineering consultancy specializing in backend development and cloud architecture</p>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Proven Expertise in Mission-Critical Systems</h3>
+                <p><span class="company-name"><span class="en">En</span><span class="code">code</span><span class="d">d</span> <span class="solutions">Solutions Limited</span></span> is a UK-based software engineering consultancy specializing in backend development, distributed systems, and cloud architecture.</p>
+                <p>Led by experienced software engineers with over 15 years of industry experience, we deliver complex, mission-critical software systems for organizations building scalable and reliable platforms.</p>
+                <p>We focus on building systems that are scalable, reliable, and maintainable—even under demanding workloads.</p>
+            </div>
+            <div class="about-stats">
+                <div class="stat">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Projects Delivered</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">UK Based</div>
+                    <div class="stat-label">Remote International</div>
+                </div>
+                <!--<div class="stat">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Support Available</div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="section-header">
+            <h2>Services</h2>
+            <p>Comprehensive backend engineering and cloud architecture solutions</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Backend Development (.NET)</h3>
+                <p>Design and development of scalable backend services using modern .NET technologies.</p>
+                <ul>
+                    <li>REST API design and development</li>
+                    <li>Microservices architecture</li>
+                    <li>High-performance backend services</li>
+                    <li>Third-party integrations</li>
+                    <li>Platform architecture</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <h3>Legacy System Modernization</h3>
+                <p>Help organizations migrate from older .NET systems to modern, scalable platforms.</p>
+                <ul>
+                    <li>Migration to modern .NET</li>
+                    <li>Monolithic refactoring</li>
+                    <li>Performance improvements</li>
+                    <li>Modern development practices</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <h3>Cloud Architecture & Azure</h3>
+                <p>Design and development of cloud-native architectures on Microsoft Azure.</p>
+                <ul>
+                    <li>Azure architecture design</li>
+                    <li>Security & Key Vault management</li>
+                    <li>High availability systems</li>
+                    <li>CI/CD pipelines</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <h3>Real-Time Systems</h3>
+                <p>Building event-driven systems capable of processing large volumes of real-time data.</p>
+                <ul>
+                    <li>RabbitMQ messaging systems</li>
+                    <li>Pub/Sub architectures</li>
+                    <li>WebSocket streaming</li>
+                    <li>Event-driven microservices</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <h3>Financial & Blockchain Integration</h3>
+                <p>Experience integrating financial systems and blockchain technologies securely.</p>
+                <ul>
+                    <li>Ethereum blockchain integration</li>
+                    <li>Wallet management</li>
+                    <li>ERC-20 token processing</li>
+                    <li>Payment gateway integrations</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <h3>Consulting & Architecture</h3>
+                <p>Strategic consulting for complex backend systems and cloud architecture challenges.</p>
+                <ul>
+                    <li>System architecture consulting</li>
+                    <li>Performance optimization</li>
+                    <li>Technology selection guidance</li>
+                    <li>Team mentoring</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section id="expertise">
+        <div class="section-header">
+            <h2>Technical Expertise</h2>
+            <p>Deep knowledge across modern backend and cloud technologies</p>
+        </div>
+        <div class="expertise-grid">
+            <div class="expertise-category">
+                <h3>Languages</h3>
+                <ul>
+                    <li>C#</li>
+                    <li>C++</li>
+                    <li>C</li>
+                </ul>
+            </div>
+            <div class="expertise-category">
+                <h3>Frameworks</h3>
+                <ul>
+                    <li>.NET</li>
+                    <li>.NET Core</li>
+                    <li>.NET Framework</li>
+                    <li>ASP.NET Core</li>
+                </ul>
+            </div>
+            <div class="expertise-category">
+                <h3>Cloud</h3>
+                <ul>
+                    <li>Microsoft Azure</li>
+                    <li>Azure Key Vault</li>
+                    <li>Azure Cache Redis</li>
+                </ul>
+            </div>
+            <div class="expertise-category">
+                <h3>Databases</h3>
+                <ul>
+                    <li>SQL Server</li>
+                    <li>MySQL</li>
+                    <li>Redis</li>
+                </ul>
+            </div>
+            <div class="expertise-category">
+                <h3>Data Access</h3>
+                <ul>
+                    <li>Entity Framework</li>
+                    <li>EF Core</li>
+                    <li>Dapper</li>
+                    <li>ADO.NET</li>
+                </ul>
+            </div>
+            <div class="expertise-category">
+                <h3>Messaging & Real-Time</h3>
+                <ul>
+                    <li>RabbitMQ</li>
+                    <li>Ably.io</li>
+                    <li>WebSockets</li>
+                </ul>
+            </div>
+            <div class="expertise-category">
+                <h3>DevOps & CI/CD</h3>
+                <ul>
+                    <li>GitHub</li>
+                    <li>GitHub Actions</li>
+                    <li>Octopus Deploy</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="section-header">
+            <h2>Project Experience</h2>
+            <p>Proven track record delivering high-performance systems</p>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>High-Performance Trading Systems</h3>
+                <p>Designed and implemented time-critical trading systems integrating external exchanges and real-time data feeds.</p>
+                <div class="project-outcomes">
+                    <strong>Key Outcomes:</strong>
+                    <ul>
+                        <li>30% improvement in performance</li>
+                        <li>Reduced system latency</li>
+                        <li>Improved reliability</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>Blockchain Integration</h3>
+                <p>Implemented Ethereum blockchain integration enabling secure transactions on decentralized exchanges.</p>
+                <div class="project-outcomes">
+                    <strong>Features:</strong>
+                    <ul>
+                        <li>Wallet management</li>
+                        <li>Transaction execution</li>
+                        <li>ERC-20 token support</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>Real-Time Data Platforms</h3>
+                <p>Developed real-time data systems using Ably.io, Redis, and WebSockets for high-frequency data distribution.</p>
+                <div class="project-outcomes">
+                    <strong>Results:</strong>
+                    <ul>
+                        <li>28% reduction in data latency</li>
+                        <li>Scalable to millions of events</li>
+                        <li>99.9% uptime achieved</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>Payment Platform Integrations</h3>
+                <p>Integrated multiple payment providers including Worldpay, Neteller, Skrill, and RapidPay.</p>
+                <div class="project-outcomes">
+                    <strong>Capabilities:</strong>
+                    <ul>
+                        <li>Secure financial transactions</li>
+                        <li>Reconciliation systems</li>
+                        <li>Multi-currency support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Section -->
+    <section id="why">
+        <div class="section-header">
+            <h2>Why Work With Us</h2>
+            <p>The expertise and reliability you need for mission-critical systems</p>
+        </div>
+        <div class="why-grid">
+            <div class="why-item">
+                <div class="why-icon">✓</div>
+                <div class="why-content">
+                    <h3>15+ Years Experience</h3>
+                    <p>Extensive track record delivering complex, mission-critical software systems</p>
+                </div>
+            </div>
+            <div class="why-item">
+                <div class="why-icon">✓</div>
+                <div class="why-content">
+                    <h3>Backend Specialist</h3>
+                    <p>Deep expertise in high-performance backend systems and distributed platforms</p>
+                </div>
+            </div>
+            <div class="why-item">
+                <div class="why-icon">✓</div>
+                <div class="why-content">
+                    <h3>.NET & Azure Expert</h3>
+                    <p>Modern cloud-native architecture and latest .NET technologies</p>
+                </div>
+            </div>
+            <div class="why-item">
+                <div class="why-icon">✓</div>
+                <div class="why-content">
+                    <h3>Financial Systems</h3>
+                    <p>Proven experience with trading, betting, and payment systems</p>
+                </div>
+            </div>
+            <div class="why-item">
+                <div class="why-icon">✓</div>
+                <div class="why-content">
+                    <h3>Performance Focused</h3>
+                    <p>Proven record of optimization and reliability for high-throughput systems</p>
+                </div>
+            </div>
+            <div class="why-item">
+                <div class="why-icon">✓</div>
+                <div class="why-content">
+                    <h3>UK Based & Remote</h3>
+                    <p>Available for UK and international remote contracts with flexible engagement</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact-content">
+            <h2>Let's Work Together</h2>
+            <p>Looking for experienced backend engineering support? Get in touch to discuss your project.</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>📧 Email</h3>
+                    <p><a href="mailto:contact@encodedltd.com">contact@encodedltd.com</a></p>
+                </div>
+                <div class="contact-item">
+                    <h3>🌍 Location</h3>
+                    <p>United Kingdom</p>
+                </div>
+                <div class="contact-item">
+                    <h3>💼 Services</h3>
+                    <p>Contract & Consulting</p>
+                </div>
+            </div>
+            <div style="margin-top: 2rem;">
+                <a href="#services" class="btn btn-primary">Explore Our Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 <span class="company-name"><span class="en">En</span><span class="code">code</span><span class="d">d</span> <span class="solutions">Solutions Limited</span></span>. All rights reserved. | United Kingdom</p>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navbar
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 50) {
+                nav.style.background = 'rgba(10, 14, 39, 0.98)';
+                nav.style.boxShadow = '0 2px 10px rgba(0, 212, 255, 0.1)';
+            } else {
+                nav.style.background = 'rgba(10, 14, 39, 0.95)';
+                nav.style.boxShadow = 'none';
+            }
+            lastScroll = currentScroll;
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .project-card, .expertise-category, .why-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
